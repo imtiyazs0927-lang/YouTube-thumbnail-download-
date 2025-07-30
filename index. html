@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free YouTube Thumbnail Downloader</title>
+  <meta name="description" content="Download HD YouTube video thumbnails instantly. Paste the link and get the image. 100% Free tool."/>
+  <meta name="keywords" content="YouTube thumbnail downloader, free youtube thumbnail, get youtube thumbnail, download hd youtube thumbnail">
+  <meta property="og:title" content="Free YouTube Thumbnail Downloader" />
+  <meta property="og:description" content="Download YouTube video thumbnails in HD quality. Fast & free." />
+  <meta property="og:image" content="https://i.imgur.com/8Km9tLL.jpg" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 28px;
+    }
+    input {
+      width: 90%;
+      max-width: 400px;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 20px;
+      font-size: 16px;
+      outline: none;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: transparent;
+      border: 2px solid #00ffcc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #00ffcc;
+      color: #000;
+      transform: scale(1.05);
+    }
+    img {
+      margin-top: 30px;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+    .footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Free YouTube Thumbnail Downloader</h1>
+  <p>Paste any YouTube video link to get its thumbnail</p>
+
+  <input type="text" id="videoURL" placeholder="Enter YouTube Video URL" />
+  <br />
+  <button onclick="getThumbnail()">Get Thumbnail</button>
+
+  <div id="result" style="margin-top:30px;"></div>
+
+  <div class="footer">© 2025 FreeToolZone</div>
+
+  <script>
+    function getThumbnail() {
+      const url = document.getElementById("videoURL").value;
+      const regex = /(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-]{11})/;
+      const match = url.match(regex);
+
+      if (match && match[1]) {
+        const videoId = match[1];
+        const thumbUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        document.getElementById("result").innerHTML = `
+          <h2>Thumbnail Preview:</h2>
+          <img src="${thumbUrl}" alt="YouTube Thumbnail" />
+          <br/><br/>
+          <a href="${thumbUrl}" download="thumbnail.jpg">
+            <button>⬇️ Download Thumbnail</button>
+          </a>
+        `;
+      } else {
+        document.getElementById("result").innerHTML = "<p style='color:red;'>❌ Invalid YouTube URL</p>";
+      }
+    }
+  </script>
+
+</body>
+</html>
